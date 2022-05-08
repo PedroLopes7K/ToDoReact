@@ -1,7 +1,9 @@
 // import logo from './logo.svg'
 import './App.css'
 import { useState } from 'react'
-import Task from './Task'
+import Task from './Components/Task'
+import { Button } from './Components/StyledComponents'
+import { Input } from './Components/StyledComponents'
 
 function App() {
   const [taskName, setTaskName] = useState('')
@@ -19,21 +21,21 @@ function App() {
     <div className="App">
       <h2> To Do List</h2>
       <label>Task Name:</label>
-      <input
+      <Input
         type="text"
         onChange={e => {
           setTaskName(e.target.value)
         }}
       />
       <label>Time:</label>
-      <input
+      <Input
         type="text"
         onChange={e => {
           setTime(e.target.value)
         }}
       />
 
-      <button onClick={addTask}>Add Task</button>
+      <Button onClick={addTask}>Add Task</Button>
       <hr color="gray" size="2" width="50%" />
 
       {taskList.map(taskItem => (
