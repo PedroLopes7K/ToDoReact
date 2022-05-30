@@ -10,4 +10,11 @@ label {
   font-weight: bold;
 }
 
+.link-btn {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  padding: 0 5px;
+
+}
 
