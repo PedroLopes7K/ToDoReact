@@ -1,11 +1,11 @@
 import React from 'react'
-import Rotas from './Routes'
 import './App.css'
+import Main from './Components/Main'
 
 export default function App() {
   return (
     <div>
-      <Rotas />
+      <Main />
     </div>
   )
 }
