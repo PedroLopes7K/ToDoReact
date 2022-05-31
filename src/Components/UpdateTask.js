@@ -30,8 +30,8 @@ export default function UpdateTask({ id, tasks, update, taskSet }) {
       />
       <br />
       <Button onClick={() => updateTask(newTask)}>Update Task</Button>
-      <Button onClick={() => back(newTask)}>Back Add</Button>
-      <hr color="gray" size="2" width="50%" />
+      <Button onClick={() => back()}>Back Add</Button>
+      {/* <hr color="gray" size="2" width="50%" /> */}
     </div>
   )
 }

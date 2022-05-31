@@ -9,6 +9,8 @@ function Main() {
   const [update, setUpdate] = useState(false)
   const [idTask, setIdTask] = useState(null)
 
+  // const colors = ['#BDDFD6', '#7FA9B7', '#D1A8D5']
+
   const addTask = task => {
     if (task === '') {
       alert('Preencha a tarefa')
@@ -18,7 +20,6 @@ function Main() {
       ...taskList,
       { nameTask: task, id: Math.floor(Math.random() * 9999) }
     ])
-    // console.log(taskList.length)
   }
   function del(taskDel) {
     console.log(taskDel)
@@ -29,7 +30,6 @@ function Main() {
   }
 
   function edit(id) {
-    // alert('Editar')
     setIdTask(id)
     setUpdate(true)
   }
@@ -37,43 +37,48 @@ function Main() {
   return (
     <div className="App">
       <h2> To Do List</h2>
-      {update ? (
-        <UpdateTask
-          id={idTask}
-          tasks={taskList}
-          update={setUpdate}
-          taskSet={setTaskList}
-        />
-      ) : (
-        <>
-          <label>Task Name:</label>
-          <Input
-            type="text"
-            onChange={e => {
-              setTaskName(e.target.value)
-            }}
+      <div className="top">
+        {update ? (
+          <UpdateTask
+            id={idTask}
+            tasks={taskList}
+            update={setUpdate}
+            taskSet={setTaskList}
           />
-          <Button onClick={() => addTask(taskName)}>Add Task</Button>
-          <hr color="gray" size="2" width="50%" />
-        </>
-      )}
+        ) : (
+          <>
+            <label>Task Name:</label>
+            <Input
+              type="text"
+              onChange={e => {
+                setTaskName(e.target.value)
+              }}
+            />
+            <Button onClick={() => addTask(taskName)}>Add Task</Button>
+          </>
+        )}
+      </div>
+      <hr color="gray" size="2" width="50%" />
 
       {taskList.map(taskItem => (
-        <Card background={'gray'} width={'250px'} height={'120px'}>
+        <Card background={'#3BB0BD'} width={'250px'}>
           <h4>Task: {taskItem.nameTask}</h4>
-          <span>{taskItem.id}</span>
-          <button
-            onClick={() => del(taskItem.id)}
-            style={{ background: 'red', margin: '0 10px' }}
-          >
-            Excluir
-          </button>
-          <button
-            onClick={() => edit(taskItem.id)}
-            style={{ background: 'blue' }}
-          >
-            Editar
-          </button>
+          {/* <span>{taskItem.id}</span> */}
+
+          <div>
+            <Button
+              onClick={() => del(taskItem.id)}
+              style={{ background: 'red', margin: '0 10px' }}
+            >
+              Excluir
+            </Button>
+            <Button
+              onClick={() => edit(taskItem.id)}
+              style={{ background: 'blue' }}
+            >
+              Editar
+            </Button>
+          </div>
         </Card>
       ))}
     </div>
