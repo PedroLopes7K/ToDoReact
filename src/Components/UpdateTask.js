@@ -12,7 +12,10 @@ export default function UpdateTask({ id, tasks, update, taskSet }) {
         element.nameTask = task
       }
     })
+
     taskSet(tasks)
+    localStorage.setItem('task', JSON.stringify(tasks))
+
     update(false)
   }
 

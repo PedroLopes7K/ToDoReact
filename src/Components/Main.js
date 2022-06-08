@@ -1,15 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, Input, Card } from './StyledComponents'
 import UpdateTask from './UpdateTask'
 // import { Link } from 'react-router-dom'
 
 function Main() {
   const [taskName, setTaskName] = useState('')
-  const [taskList, setTaskList] = useState([])
+  const [taskList, setTaskList] = useState(() => {
+    const tasks = localStorage.getItem('task')
+    const initialTasks = JSON.parse(tasks)
+    return initialTasks || []
+  })
   const [update, setUpdate] = useState(false)
   const [idTask, setIdTask] = useState(null)
+  // useEffect(() => {
+  //   const tasks = JSON.parse(localStorage.getItem('tarefa'))
+  //   if (tasks) {
+  //     setTaskList(tasks)
+  //   }
+  // }, [])
 
-  // const colors = ['#BDDFD6', '#7FA9B7', '#D1A8D5']
+  // SAVE
+  useEffect(() => {
+    localStorage.setItem('task', JSON.stringify(taskList))
+    // console.log(taskList)
+  }, [taskList])
 
   const addTask = task => {
     if (task === '') {
@@ -22,7 +36,7 @@ function Main() {
     ])
   }
   function del(taskDel) {
-    console.log(taskDel)
+    // console.log(taskDel)
     const result = taskList.filter(task => {
       return task.id !== taskDel
     })
@@ -61,7 +75,7 @@ function Main() {
       <hr color="gray" size="2" width="50%" />
 
       {taskList.map(taskItem => (
-        <Card background={'#3BB0BD'} width={'250px'}>
+        <Card key={taskItem.id} background={'#3BB0BD'} width={'250px'}>
           <h4>Task: {taskItem.nameTask}</h4>
           {/* <span>{taskItem.id}</span> */}
 
